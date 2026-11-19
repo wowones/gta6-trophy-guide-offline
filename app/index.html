@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Leonida Ledger — GTA VI Trophy Guide</title>
+<meta name="description" content="An offline guide and tracker for all 55 Grand Theft Auto VI trophies.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="scanline" aria-hidden="true"></div>
+
+<header class="masthead">
+  <div class="brand">
+    <div class="brand-mark" aria-hidden="true"><span>LL</span></div>
+    <div>
+      <p class="eyebrow">Grand Theft Auto VI &middot; PlayStation 5 &middot; 55 trophies</p>
+      <h1>LEONIDA <span>LEDGER</span></h1>
+      <p class="tagline">A trophy checklist, roadmap &amp; field guide. Entirely offline.</p>
+    </div>
+  </div>
+  <div class="progress-card">
+    <div class="progress-top">
+      <span id="progress-label">0 / 55 earned</span>
+      <span id="progress-percent">0%</span>
+    </div>
+    <div class="progress-track"><div id="progress-fill" class="progress-fill"></div></div>
+    <div id="grade-counts" class="grade-counts"></div>
+  </div>
+</header>
+
+<nav class="tabs" aria-label="Views">
+  <button type="button" class="tab is-active" data-view="checklist">Checklist</button>
+  <button type="button" class="tab" data-view="roadmap">Roadmap to platinum</button>
+  <span class="tabs-note">Progress saved in this browser &middot; export to keep it</span>
+</nav>
+
+<section id="checklist-view" class="view">
+  <div class="toolbar">
+    <label class="field">Grade
+      <select id="grade-filter">
+        <option value="all">All grades</option>
+        <option value="platinum">Platinum</option>
+        <option value="gold">Gold</option>
+        <option value="silver">Silver</option>
+        <option value="bronze">Bronze</option>
+      </select>
+    </label>
+    <label class="field">Kind
+      <select id="kind-filter">
+        <option value="all">All kinds</option>
+        <option value="story">Story</option>
+        <option value="collectible">Collectibles</option>
+        <option value="activity">Activities</option>
+        <option value="hidden">Hidden</option>
+        <option value="online">Online</option>
+      </select>
+    </label>
+    <label class="field search-field">Find
+      <input id="search" type="search" placeholder="Name or keyword" autocomplete="off">
+    </label>
+    <label class="switch"><input id="missable-only" type="checkbox"><span>Missables only</span></label>
+    <label class="switch"><input id="spoilers" type="checkbox"><span>Spoilers on</span></label>
+    <div class="toolbar-actions">
+      <button id="export" type="button" class="btn btn-primary">Export progress</button>
+      <label class="btn btn-ghost import-label">Import<input id="import" type="file" accept="application/json,.json"></label>
+    </div>
+  </div>
+  <p id="filter-summary" class="filter-summary"></p>
+
+  <div class="workspace">
+    <section class="list-panel" aria-label="Trophy list">
+      <div class="list-head"><span>Earned</span><span>Trophy / official description</span><span>Grade</span></div>
+      <div id="trophy-list" class="trophy-list"></div>
+    </section>
+    <aside id="detail" class="detail-panel" aria-live="polite"></aside>
+  </div>
+</section>
+
+<section id="roadmap-view" class="view" hidden>
+  <div class="roadmap-intro">
+    <h2>Platinum route</h2>
+    <p>Five stages built from the official trophy descriptions. Work top to bottom: story first, then the one-shot windows, then collecting and grinding. The amber rows are the ones that can be lost if you advance too far.</p>
+  </div>
+  <div id="roadmap" class="roadmap"></div>
+</section>
+
+<footer class="footer">
+  <span>Names, descriptions and grades: the official PlayStation list. Guides, roadmap and code: original to this entry, with sources cited on every trophy.</span>
+  <span>No network requests &middot; no official artwork &middot; MIT licensed</span>
+</footer>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>
