@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Leonida Legacy — GTA VI Trophy Dossier</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="glow glow-a" aria-hidden="true"></div>
+<div class="glow glow-b" aria-hidden="true"></div>
+
+<header class="masthead">
+  <div class="brand">
+    <div class="brand-mark" aria-hidden="true"><span>VI</span></div>
+    <div class="brand-copy">
+      <p class="eyebrow">OFFLINE FIELD GUIDE &nbsp;·&nbsp; LEONIDA EDITION</p>
+      <h1>LEONIDA <em>LEGACY</em></h1>
+      <p class="tagline">Every PlayStation 5 trophy, one platinum route, zero network calls.</p>
+    </div>
+  </div>
+  <div class="mast-stats">
+    <div class="count-block">
+      <strong id="earned-count">0</strong>
+      <span>OF 55 EARNED</span>
+    </div>
+    <div class="grade-strip" id="grade-strip"></div>
+  </div>
+</header>
+
+<section class="progress-panel" aria-label="Platinum progress">
+  <div class="progress-caption">
+    <span>PLATINUM TRACK</span>
+    <span id="progress-percent">0% COMPLETE</span>
+  </div>
+  <div class="track"><div id="progress-fill"></div></div>
+  <div class="progress-notes">
+    <span id="progress-note">Tick a trophy to bank it in this browser.</span>
+    <span>1 PLATINUM &nbsp;·&nbsp; 2 GOLD &nbsp;·&nbsp; 6 SILVER &nbsp;·&nbsp; 46 BRONZE</span>
+  </div>
+</section>
+
+<nav class="toolbar" aria-label="Guide controls">
+  <div class="view-tabs" role="group" aria-label="View">
+    <button type="button" id="view-checklist" class="tab">CHECKLIST</button>
+    <button type="button" id="view-roadmap" class="tab">ROADMAP</button>
+  </div>
+  <label class="field">GRADE
+    <select id="grade-filter">
+      <option value="all">All grades</option>
+      <option value="platinum">Platinum</option>
+      <option value="gold">Gold</option>
+      <option value="silver">Silver</option>
+      <option value="bronze">Bronze</option>
+    </select>
+  </label>
+  <label class="field">KIND
+    <select id="kind-filter">
+      <option value="all">All kinds</option>
+      <option value="story">Story</option>
+      <option value="collectible">Collectible</option>
+      <option value="activity">Activity</option>
+      <option value="online">Online</option>
+      <option value="hidden">Hidden</option>
+      <option value="missable">Missable</option>
+    </select>
+  </label>
+  <label class="field search-field">FIND
+    <input id="search" type="search" placeholder="name, guide, mission…" autocomplete="off">
+  </label>
+  <button type="button" id="spoiler-toggle" class="utility spoilers-on">SPOILERS: ON</button>
+  <button type="button" id="export" class="utility">EXPORT</button>
+  <label class="utility import-label">IMPORT
+    <input id="import" type="file" accept="application/json,.json">
+  </label>
+</nav>
+
+<main class="workspace">
+  <section class="list-pane" aria-label="Trophy list">
+    <div class="pane-head">
+      <h2 id="list-title">THE CHECKLIST</h2>
+      <span id="visible-count">55 shown</span>
+    </div>
+    <p class="pane-intro" id="list-intro">The official name, description and grade sit beside our own cited guidance. Select a row to open its dossier entry.</p>
+    <div class="list" id="list"></div>
+  </section>
+
+  <aside class="detail-pane" id="detail" aria-label="Trophy detail"></aside>
+</main>
+
+<footer>
+  <span>FAN-MADE &amp; OFFLINE — no logos, no artwork, no requests off this device.</span>
+  <span>Official names, descriptions and grades cited to the PlayStation list; all guidance written for this dossier.</span>
+</footer>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>

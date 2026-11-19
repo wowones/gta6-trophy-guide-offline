@@ -1,0 +1,228 @@
+/* Leonida Legacy — original neon interface. No external assets, no network. */
+:root {
+  --navy: #05091a;
+  --panel: #0b1226;
+  --panel-2: #101a34;
+  --line: #203354;
+  --ink: #e9f4ff;
+  --muted: #8ba3c7;
+  --cyan: #2ff3ee;
+  --magenta: #ff48b5;
+  --orange: #ffb04a;
+  --gold: #ffd66b;
+  --silver: #b9cade;
+  --bronze: #d08a56;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--ink);
+  background:
+    radial-gradient(1100px 520px at 8% -10%, rgba(47, 243, 238, 0.10), transparent 65%),
+    radial-gradient(900px 500px at 95% 0%, rgba(255, 72, 181, 0.10), transparent 60%),
+    linear-gradient(180deg, #070c1d 0%, var(--navy) 55%, #040713 100%);
+  font: 14px/1.45 "Segoe UI", Tahoma, Arial, sans-serif;
+  letter-spacing: 0.01em;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.22;
+  background: repeating-linear-gradient(180deg, transparent 0 3px, rgba(120, 180, 255, 0.045) 3px 4px);
+  z-index: 9;
+}
+
+.glow { position: fixed; border-radius: 50%; filter: blur(90px); pointer-events: none; opacity: 0.16; z-index: 0; }
+.glow-a { width: 340px; height: 340px; left: -120px; top: 250px; background: var(--cyan); }
+.glow-b { width: 300px; height: 300px; right: -110px; top: 620px; background: var(--magenta); }
+
+.masthead {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  padding: 20px 28px 16px;
+  border-bottom: 1px solid var(--line);
+  background: linear-gradient(90deg, rgba(11, 18, 38, 0.96), rgba(5, 9, 26, 0.65));
+}
+
+.brand { display: flex; align-items: center; gap: 16px; }
+
+.brand-mark {
+  width: 62px;
+  height: 68px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(150deg, var(--cyan), #2aa8ff 48%, var(--magenta));
+  clip-path: polygon(22% 0, 78% 0, 100% 22%, 100% 78%, 78% 100%, 22% 100%, 0 78%, 0 22%);
+  box-shadow: 0 0 28px rgba(47, 243, 238, 0.45);
+}
+.brand-mark span { font: 800 27px/1 "Trebuchet MS", Arial, sans-serif; color: #061022; letter-spacing: -0.06em; }
+
+.eyebrow { margin: 0 0 2px; font-size: 10px; letter-spacing: 0.32em; color: var(--cyan); font-weight: 700; }
+h1 { margin: 0; font: 800 30px/1 "Trebuchet MS", Arial, sans-serif; letter-spacing: 0.07em; }
+h1 em { font-style: normal; color: var(--magenta); text-shadow: 0 0 18px rgba(255, 72, 181, 0.5); }
+.tagline { margin: 6px 0 0; font-size: 12px; color: var(--muted); }
+
+.mast-stats { text-align: right; display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
+.count-block { display: flex; align-items: baseline; gap: 8px; }
+.count-block strong { font: 800 38px/1 "Trebuchet MS", Arial, sans-serif; color: var(--cyan); text-shadow: 0 0 20px rgba(47, 243, 238, 0.45); }
+.count-block span { font-size: 10px; letter-spacing: 0.22em; color: var(--muted); }
+.grade-strip { display: flex; gap: 6px; }
+
+.mini-grade { padding: 3px 8px; border: 1px solid var(--line); border-radius: 3px; font-size: 10px; letter-spacing: 0.08em; color: var(--muted); background: #0a1020; }
+.mini-grade b { color: var(--ink); font-weight: 700; }
+.mini-grade.platinum { border-color: #b8d8ec; }
+.mini-grade.gold { border-color: #9a7527; }
+.mini-grade.silver { border-color: #71859d; }
+.mini-grade.bronze { border-color: #8a5734; }
+
+.progress-panel { position: relative; z-index: 1; padding: 12px 28px 10px; border-bottom: 1px solid var(--line); }
+.progress-caption, .progress-notes { display: flex; justify-content: space-between; gap: 16px; font-size: 10px; letter-spacing: 0.18em; color: var(--muted); }
+.progress-caption span:last-child { color: var(--orange); font-weight: 700; }
+.track { height: 9px; margin: 7px 0; border: 1px solid #274063; background: #060c1c; border-radius: 20px; overflow: hidden; }
+#progress-fill { height: 100%; width: 0; border-radius: 20px; background: linear-gradient(90deg, var(--cyan), var(--magenta) 65%, var(--orange)); box-shadow: 0 0 16px rgba(255, 72, 181, 0.6); transition: width 0.25s ease; }
+.progress-notes { letter-spacing: 0.05em; font-size: 10px; }
+#progress-note { color: var(--cyan); }
+
+.toolbar {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 8px;
+  padding: 12px 28px;
+  border-bottom: 1px solid var(--line);
+  background: rgba(7, 12, 29, 0.82);
+}
+.view-tabs { display: flex; gap: 3px; margin-right: 8px; }
+.tab, .utility, .field select, .field input {
+  font: 700 11px/1 "Segoe UI", Arial, sans-serif;
+  letter-spacing: 0.11em;
+  color: var(--ink);
+  background: #0d1730;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 9px 11px;
+}
+.tab { cursor: pointer; border-bottom: 2px solid transparent; }
+.tab.active { color: #05101d; background: var(--cyan); border-color: var(--cyan); box-shadow: 0 0 14px rgba(47, 243, 238, 0.35); }
+.tab:hover, .utility:hover { border-color: var(--cyan); }
+.field { display: flex; flex-direction: column; gap: 5px; font-size: 9px; letter-spacing: 0.2em; color: var(--muted); }
+.field select, .field input { min-width: 128px; padding: 8px 9px; letter-spacing: 0.03em; font-weight: 600; }
+.search-field input { min-width: 190px; }
+.utility { cursor: pointer; }
+.utility.spoilers-on { color: var(--magenta); border-color: rgba(255, 72, 181, 0.6); }
+.utility.spoilers-off { color: var(--muted); }
+.import-label { position: relative; overflow: hidden; display: inline-flex; align-items: center; }
+.import-label input { position: absolute; inset: 0; opacity: 0; cursor: pointer; font-size: 1px; padding: 0; border: 0; }
+
+.workspace { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(0, 1fr) 392px; gap: 14px; padding: 16px 28px 22px; align-items: start; }
+
+.list-pane, .detail-pane {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: linear-gradient(180deg, rgba(16, 26, 52, 0.96), rgba(8, 14, 31, 0.96));
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.3);
+}
+.list-pane { padding: 14px 14px 16px; }
+.pane-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding-bottom: 6px; border-bottom: 1px solid var(--line); }
+.pane-head h2 { margin: 0; font: 800 15px/1.2 "Trebuchet MS", Arial, sans-serif; letter-spacing: 0.16em; color: var(--cyan); }
+#visible-count { font-size: 10px; letter-spacing: 0.14em; color: var(--orange); }
+.pane-intro { margin: 8px 0 10px; font-size: 11px; color: var(--muted); }
+
+.list { display: flex; flex-direction: column; gap: 5px; }
+
+.trophy-row {
+  display: grid;
+  grid-template-columns: 22px 50px minmax(0, 1fr) auto;
+  gap: 9px;
+  align-items: start;
+  padding: 8px 9px;
+  border: 1px solid #1b2c4c;
+  border-left: 3px solid #2b4269;
+  border-radius: 5px;
+  background: rgba(9, 16, 35, 0.9);
+  cursor: pointer;
+}
+.trophy-row:hover { border-color: var(--cyan); background: rgba(20, 35, 66, 0.95); }
+.trophy-row.selected { border-color: var(--magenta); border-left-color: var(--magenta); background: linear-gradient(90deg, rgba(255, 72, 181, 0.12), rgba(9, 16, 35, 0.95) 55%); }
+.trophy-row.earned { opacity: 0.78; border-left-color: var(--cyan); }
+.trophy-row.earned .trophy-name { text-decoration: line-through; text-decoration-color: rgba(47, 243, 238, 0.6); }
+.trophy-row input[type="checkbox"] { width: 17px; height: 17px; margin: 2px 0 0; accent-color: var(--cyan); cursor: pointer; }
+
+.medal {
+  display: inline-block;
+  text-align: center;
+  padding: 4px 2px;
+  border-radius: 3px;
+  font: 800 9px/1 "Segoe UI", Arial, sans-serif;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #08101d;
+}
+.medal.platinum { background: linear-gradient(135deg, #effaff, #93bdd6); }
+.medal.gold { background: linear-gradient(135deg, var(--gold), #b5811e); }
+.medal.silver { background: linear-gradient(135deg, #e3ecf6, var(--silver)); }
+.medal.bronze { background: linear-gradient(135deg, #e8a36d, var(--bronze)); }
+
+.trophy-name { font-weight: 700; font-size: 13px; color: #f4f9ff; }
+.trophy-desc { margin-top: 2px; font-size: 11px; color: var(--muted); }
+.trophy-hint { margin-top: 4px; font-size: 10.5px; color: #a9c4e6; }
+.tags { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
+.tag { padding: 2px 6px; border-radius: 3px; border: 1px solid var(--line); font-size: 9px; letter-spacing: 0.1em; color: var(--muted); white-space: nowrap; }
+.tag.miss { color: var(--orange); border-color: rgba(255, 176, 74, 0.55); }
+.tag.hide { color: var(--magenta); border-color: rgba(255, 72, 181, 0.5); }
+.spoiler-line { font-size: 11px; color: var(--muted); font-style: italic; }
+
+.step-group { margin-bottom: 12px; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+.step-head { display: flex; justify-content: space-between; gap: 10px; padding: 9px 11px; background: linear-gradient(90deg, rgba(47, 243, 238, 0.14), rgba(255, 72, 181, 0.08)); border-bottom: 1px solid var(--line); }
+.step-head h3 { margin: 0; font: 800 12px/1.2 "Trebuchet MS", Arial, sans-serif; letter-spacing: 0.12em; color: var(--cyan); }
+.step-head p { margin: 3px 0 0; font-size: 10.5px; color: var(--muted); }
+.step-head span { font-size: 9px; letter-spacing: 0.12em; color: var(--orange); white-space: nowrap; }
+.step-body { display: flex; flex-direction: column; gap: 4px; padding: 7px; }
+.step-body .trophy-row { grid-template-columns: 22px 44px minmax(0, 1fr) auto; padding: 6px 8px; }
+
+.empty { padding: 24px; text-align: center; color: var(--muted); font-size: 12px; border: 1px dashed var(--line); border-radius: 6px; }
+.empty strong { display: block; color: var(--cyan); margin-bottom: 6px; font-size: 14px; }
+
+.detail-pane { position: sticky; top: 12px; padding: 0; overflow: hidden; }
+.detail-top { padding: 14px 15px 12px; border-bottom: 1px solid var(--line); background: linear-gradient(135deg, rgba(255, 72, 181, 0.12), transparent 60%); }
+.detail-kicker { display: flex; justify-content: space-between; align-items: center; font-size: 9px; letter-spacing: 0.2em; color: var(--muted); }
+.detail-kicker b { color: var(--orange); }
+.detail-top h2 { margin: 8px 0 6px; font: 800 18px/1.2 "Trebuchet MS", Arial, sans-serif; color: #fff; }
+.detail-official { margin: 0; padding: 8px 10px; border-left: 2px solid var(--cyan); background: rgba(47, 243, 238, 0.07); font-size: 11.5px; color: #cfe6ff; }
+.detail-body { padding: 13px 15px 16px; }
+.detail-meta { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 10px; }
+.guide-block h3, .sources-block h3, .miss-block h3 { margin: 14px 0 6px; font: 800 10px/1 "Segoe UI", Arial, sans-serif; letter-spacing: 0.2em; color: var(--magenta); }
+.guide-block p { margin: 0; font-size: 12px; line-height: 1.55; color: #dbe9fb; }
+.sources-block ul { margin: 0; padding-left: 16px; }
+.sources-block li { font-size: 11px; margin-bottom: 5px; color: #bdd3ef; }
+.sources-block a { color: var(--cyan); text-decoration: none; border-bottom: 1px dotted var(--cyan); }
+.sources-block a:hover { color: #fff; }
+.url-host { display: block; font-size: 9px; color: #6f88ab; overflow-wrap: anywhere; }
+.miss-block { margin-top: 12px; padding: 9px 10px; border: 1px solid rgba(255, 176, 74, 0.4); border-radius: 5px; background: rgba(255, 176, 74, 0.07); }
+.miss-block p { margin: 0; font-size: 11px; color: #ffdcae; }
+.detail-idle h2 { font: 800 20px/1.2 "Trebuchet MS", Arial, sans-serif; margin: 0 0 8px; color: var(--cyan); }
+.detail-idle p { color: var(--muted); font-size: 12px; }
+.detail-idle ul { padding-left: 18px; font-size: 11.5px; color: #c8dcf6; }
+.detail-idle li { margin-bottom: 5px; }
+
+footer { position: relative; z-index: 1; display: flex; justify-content: space-between; gap: 18px; padding: 10px 28px 18px; border-top: 1px solid var(--line); font-size: 9px; letter-spacing: 0.1em; color: #6780a3; }
+
+@media (max-width: 1050px) {
+  .workspace { grid-template-columns: 1fr; }
+  .detail-pane { position: static; }
+  .masthead { flex-wrap: wrap; }
+}
